@@ -7,6 +7,7 @@
 using namespace std;
 
 short consoleMode = 0;
+short pwdFile = 0;
 
 int main(int argc, char **argv) {
     //Parse arguments
@@ -14,13 +15,25 @@ int main(int argc, char **argv) {
         if(!strcmp(argv[1], "-c")) {
             consoleMode = 1;
         }
+		else if(!strcmp(argv[1], "-f")) {
+			if(argc<3) {
+				cout<<"Specify the path to a new password file. \n";
+				cout<<"Usage: " <<argv[0]<<" -f <path>\n";
+				return 1;
+			} else {
+				pwdFile = 1;
+			}
+		}
     }
 	
 	struct lFlags lf;
 	HWND wnd = FindWindowA("ConsoleWindowClass", NULL);
 	BOOL wndRes = 0;
 
-    InitPwds();
+	if(pwdFile)
+		InitPwds(argv[2]);
+	else
+		InitPwds("p.txt");
 
     if(!consoleMode) {
         wndRes = ShowWindow(wnd, SW_HIDE); //Returns non-zero

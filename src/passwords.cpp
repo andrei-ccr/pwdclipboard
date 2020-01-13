@@ -10,10 +10,10 @@ void ListPwds(void) {
     } while(pwds[i] != NULL);
 }
 
-int InitPwds(short verbose) {
+int InitPwds(const char *pwdFile) {
     int i;
     char pwd[256];
-    FILE *f = fopen("p.txt", "r");
+    FILE *f = fopen(pwdFile, "r");
 
     if(f == NULL)  {
         std::cerr<<"Password file not found!"<<std::endl;

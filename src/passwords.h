@@ -8,7 +8,7 @@
 #include "clipboard.h"
 
 void ListPwds(void);
-int InitPwds(short verbose = 1);
+int InitPwds(const char *);
 int CpyPwd(int);
 
 #endif //_PASSWORDS_
